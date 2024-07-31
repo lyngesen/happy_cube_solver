@@ -138,6 +138,8 @@ def retrieve_solution(model:pyomo.ConcreteModel, F: FigureSpace, B: Brick):
 
 def solve_happy_problem(F, B):
 
+
+
     if len(B) < len(F.faces):
         # print(f"not enough bricks {len(F.faces)}")
         return False

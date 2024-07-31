@@ -11,16 +11,19 @@ import matplotlib.pyplot as plt
 from pyomo_implementation import solve_happy_problem
 from alive_progress import alive_bar
 import sys
-
+import os
 
 
 def single_run(args):
     ''' function called by each multiprocessing worker '''
     B,n,k,cube_cords = args
+    # SKIP if already solved
+
     F = setup_FigureSpace(0,0, cube_cords, max_faces = len(B))
     F.n = n
     F.k = k
     
+
     # only solve if there are enough bricks to fill out the figure
     F = solve_happy_problem(F,B)
     return k, F
@@ -34,7 +37,7 @@ def main():
 
     print(f"Available bricks: {len(B)}")
     print(f"Available workers/processes: {workers}")
-    for n in range(8,10):
+    for n in range(6,10):
         cubes_coords_list = generate_cube_coords(n)
         print(f"possible polycubes of size n={n} is k={len(cubes_coords_list)}")
         # for k, cube_cords in enumerate(cubes_coords_list):
@@ -48,7 +51,8 @@ def main():
                 if F: # false if infeasible
                     n_feasible = True
                     F.plot(show=False)
-                    plt.savefig(fname = './figures/' + f"main_solution_{F.n}_{F.k}.png")
+                    plt.savefig(fname = './figures/main_solutions/' + f"main_solution_{F.n}_{F.k}.png")
+                    plt.close()
                     # bar(1)
                     break
 

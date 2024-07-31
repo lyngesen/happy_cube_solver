@@ -6,6 +6,7 @@ Happy cubes ([WIKI](https://en.wikipedia.org/wiki/Happy_Cube)) is an IQ toy best
 
 The main motivation of this python project is to figure out the largest shape which can be formed by a set of Happy cube bricks.
 
+### Sets
 
 $$ Bricks \sim \mathcal{B} = \{b^1, b^2, \ldots b^B\} $$
 $$ Orientations \sim \mathcal{R} = \{r^1, r^2, \ldots r^8\} $$
@@ -15,7 +16,7 @@ $$ Faces \sim \mathcal{F} = \{f^1, f^2, \ldots f^F\} $$
 
 
 ### Bricks
-Each brick is defined by a $5\times 5$ (0-1)-matrix.
+Each brick $b \in \mathcal{B}$ is defined by a $5\times 5$ (0-1)-matrix.
 e.g.
 
 
@@ -36,6 +37,17 @@ e.g.
 
 There are $6$ unique colors and $6$ bricks for each color.
  
+
+
+
+### Orientations
+
+Here is a figure off all $5$ orientations of a yellow brick. For each brick i only consider the orientations that form unique cubegrids (ie. remove symmetries). I denote the reduces set of rotations of a brick $b \in \mathcal{B}$ by the set $\mathcal{R}(b)$.
+| ![n=1, k=0](figures/orientation_0.png)|![alt](figures/orientation_1.png) | ![alt](figures/orientation_2.png)| ![alt](figures/orientation_3.png) | ![alt](figures/orientation_4.png)|
+|-|-|-|-|-|
+
+
+
 ### Faces
 
 A set of connected cubes will form a polycube with a specific set of faces. Each face is uniquely defined by its center point coordinate (cubit). 
@@ -45,15 +57,10 @@ A set of connected cubes will form a polycube with a specific set of faces. Each
 |$1$ cube, 6 faces | $2$ cubes, $10$ faces | $4$ cubes, $16$ faces |
 
 
-Here is a figure off all $5$ orientations of a yellow brick. For each brick i only consider the orientations that form unique cubegrids (ie. remove symmetries). I denote the reduces set of rotations of a brick $b \in \mathcal{B}$ by the set $\mathcal{R}(b)$.
-| ![n=1, k=0](figures/orientation_0.png)|![alt](figures/orientation_1.png) | ![alt](figures/orientation_2.png)| ![alt](figures/orientation_3.png) | ![alt](figures/orientation_4.png)|
-|-|-|-|-|-|
-
-
 
 ## Recursive solver
 
-A simple backtracking is implemented which easily solves the problem when considering a single cube. 
+A simple backtracking is implemented which easily solves the problem when considering a single cube (Monocube). 
 
 | ![n=1, k=0](figures/monocube_0.png)|![alt](figures/monocube_2.png) | ![alt](figures/monocube_3.png)| ![alt](figures/monocube_4.png) | ![alt](figures/monocube_5.png)|
 |-|-|-|-|-|
@@ -151,6 +158,16 @@ output: largest_n, largest_F
 
 > TODO: The largest found solvable polycube <30-07-24> >
 
+
+|n|solvable polycubes|solution|
+|-|-|-|
+|2|1|![](./figures/main_solution_2_1.gif)|
+|3|2|![](./figures/main_solution_3_2.gif)|
+|4|8|![](./figures/main_solution_4_8.gif)|
+|5|28|![](./figures/main_solution_5_28.gif)|
+|6|150|![](./figures/main_solution_6_150.gif)|
+|7|24|![](./figures/main_solution_7_37.gif)|
+|8|1|![](./figures/main_solution_8_186.png)|
 
 Resources:
 * [Enumeration of polycubes](http://kevingong.com/Polyominoes/Enumeration.html)

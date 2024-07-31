@@ -11,6 +11,7 @@ from solver import cube_solve
 import math
 import os
 import imageio.v3 as iio
+import re
 
 FIGURES_LOCATION = './figures/'
 SAVE_PLOTS = True 
@@ -112,11 +113,11 @@ if False:
 
 
 
-def dir_to_gif(gif_name: str,  gif_dir: str, string_filter: callable = lambda _ : True):
+def dir_to_gif(gif_name: str,  gif_dir: str):
     images = []
-    repeat_last_image = 2
     # for filename in sorted(os.listdir(gif_dir), lambda x : int(x.split('.json')[0].split('_')[-1])):
     for filename in sorted(os.listdir(gif_dir), key =lambda x: int(x.split('.png')[0].split('_')[-1])):
+
         print(f"{filename=}")
         images.append(iio.imread(gif_dir + filename))
 
@@ -236,11 +237,35 @@ def monocube_solved():
         ######################### Figure monocube_{c_id} END #########################
 
 
+def main_solutions_as_gifs():
+
+    png_dir = './figures/main_solutions/'
+    fps = 4
+
+    files = os.listdir(png_dir)
+    pattern = r'^main_solution_(\d+)_(\d+)\.png$'
+    all_n = tuple(set([int(re.match(pattern, file).group(1)) for file in files]))
+
+    for n in all_n:
+        # Filter file names using the regular expression
+        filtered_names = [name for name in files if (re.match(pattern, name).group(1) == str(n))]
+        # print(f"{filtered_names=}")
+        
+        gif_name =  f'main_solution_{n}_{len(filtered_names)}.gif'
+
+        images = []
+        for filename in filtered_names:
+            images.append(iio.imread(png_dir + filename))
+
+        
+        iio.imwrite('./figures/' + gif_name, images, fps = fps, loop = 0)  # fps = 3
+
+
 def main():
     b = all_bricks['blue'][3]
     b.color = 'blue'
 
-    if True:
+    if False:
         print_brick(b)
         print()
 
@@ -250,10 +275,14 @@ def main():
         print_brick(b)
 
 
-    recursive_monocubes()
-    orientation(b)
-    monocube_solved()
-    example_figure_space()
+        recursive_monocubes()
+        orientation(b)
+        monocube_solved()
+        example_figure_space()
+
+
+    if True: # for testing
+        main_solutions_as_gifs()
 
     pass
 
