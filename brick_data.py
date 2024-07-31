@@ -341,9 +341,6 @@ ooxox
 
     all_bricks = {'blue': BlueBricks,'red':RedBricks,'orange':OrangeBricks,'green':GreenBricks, 'purple':PurpleBricks,'yellow':YellowBricks}
 
-
-
-
     for color, brickset in all_bricks.items():
         if color == 'blue':
             hex_color = '#0000FF'
@@ -363,10 +360,6 @@ ooxox
         hex_shades = generate_shades(hex_color)
         for i, b in enumerate(brickset):
             b.color = hex_shades[i]
-
-
-
-
-
+    
     return all_bricks, brick_colors
 

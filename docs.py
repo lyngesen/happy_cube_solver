@@ -8,6 +8,7 @@ from classes import FigureSpace, Edge, setup_FigureSpace
 import matplotlib.pyplot as plt
 from pyomo_implementation import solve_happy_problem
 from solver import cube_solve
+import math
 import os
 import imageio.v3 as iio
 
@@ -60,7 +61,7 @@ def cube_solve_plot(F, bricklist, placelist = [None]*6):
         for r, b_or in enumerate(b.or_list):
             b_or.name = f'b{i}, r{r}'
             b_or.color = b.color
-            print(b_or.name)
+            # print(b_or.name)
             Fm = deepcopy(F)
             Fm.faces[current_faceid].set_face(b_or)
             #print(Fm)
@@ -120,14 +121,14 @@ def dir_to_gif(gif_name: str,  gif_dir: str, string_filter: callable = lambda _ 
         images.append(iio.imread(gif_dir + filename))
 
     fps = 5
-    duration = 5  # seconds
+    duration = 3  # seconds
     last_image = images[-1]
     # Append the last image (fps * duration) times
-    for _ in range(3):
+    for _ in range(math.ceil(fps*duration)):
         images.append(last_image)
     
     # iio.im()
-    iio.imwrite('./figures/' + gif_name, images, fps = fps)  # fps = 3
+    iio.imwrite('./figures/' + gif_name, images, fps = fps, loop = 0)  # fps = 3
 
 if False:
     

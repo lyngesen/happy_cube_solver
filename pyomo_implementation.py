@@ -104,6 +104,7 @@ def build_happy_model(F: FigureSpace, B):
     # Define objective
     def objective_rule(model):
         return 0
+        
 
     model.obj = pyomo.Objective(rule=objective_rule, sense=pyomo.minimize)
 

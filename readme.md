@@ -55,7 +55,6 @@ Here is a figure off all $5$ orientations of a yellow brick. For each brick i on
 
 A simple backtracking is implemented which easily solves the problem when considering a single cube. 
 
-
 | ![n=1, k=0](figures/monocube_0.png)|![alt](figures/monocube_2.png) | ![alt](figures/monocube_3.png)| ![alt](figures/monocube_4.png) | ![alt](figures/monocube_5.png)|
 |-|-|-|-|-|
 | ![n=1, k=0](figures/monocube_0.gif)|![alt](figures/monocube_2.gif) | ![alt](figures/monocube_3.gif)| ![alt](figures/monocube_4.gif) | ![alt](figures/monocube_5.gif)|
