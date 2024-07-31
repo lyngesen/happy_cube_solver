@@ -62,9 +62,9 @@ A set of connected cubes will form a polycube with a specific set of faces. Each
 
 A simple backtracking is implemented which easily solves the problem when considering a single cube (Monocube). 
 
-| ![n=1, k=0](figures/monocube_0.png)|![alt](figures/monocube_2.png) | ![alt](figures/monocube_3.png)| ![alt](figures/monocube_4.png) | ![alt](figures/monocube_5.png)|
-|-|-|-|-|-|
-| ![n=1, k=0](figures/monocube_0.gif)|![alt](figures/monocube_2.gif) | ![alt](figures/monocube_3.gif)| ![alt](figures/monocube_4.gif) | ![alt](figures/monocube_5.gif)|
+| ![n=1, k=0](figures/monocube_0.png)|![alt](figures/monocube_1.png) | ![alt](figures/monocube_2.png)| ![alt](figures/monocube_3.png)| ![alt](figures/monocube_4.png) | ![alt](figures/monocube_5.png)|
+|-|-|-|-|-|-|
+| ![n=1, k=0](figures/monocube_0.gif)|![alt](figures/monocube_1.gif) |![alt](figures/monocube_2.gif) |  ![alt](figures/monocube_3.gif)| ![alt](figures/monocube_4.gif) | ![alt](figures/monocube_5.gif)|
 
 
 > TODO: The red one is missing as the data is wrong <30-07-24> >

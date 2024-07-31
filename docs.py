@@ -38,7 +38,7 @@ def get_gif_id():
     return max([int(file.split('.png')[0].split('_')[-1]) for file in files]) + 1
 
 
-def cube_solve_plot(F, bricklist, placelist = [None]*6):
+def cube_solve_plot(F, bricklist, placelist = [None]*6, max_gif_id = 300):
     #print(p.name for p in placelist)
     #print([p!= None for p in placelist])
     # Base case, place full and not failed edges
@@ -55,6 +55,7 @@ def cube_solve_plot(F, bricklist, placelist = [None]*6):
             F.plot(show = False)
             gif_id = get_gif_id()
             plt.savefig(fname = './figures/solver_gif/' + f"gif_plot_{gif_id}.png")
+            plt.close()
             return True
     if placelist[-1]: return
     current_faceid = placelist.index(None)
@@ -75,7 +76,9 @@ def cube_solve_plot(F, bricklist, placelist = [None]*6):
                 F.plot(show = False)
                 gif_id = get_gif_id()
                 plt.savefig(fname = './figures/solver_gif/' + f"gif_plot_{gif_id}.png")
-
+                plt.close()
+                if gif_id > max_gif_id:
+                    return
 
                 Bm = deepcopy(bricklist)
                 Pm = deepcopy(placelist)
@@ -162,7 +165,7 @@ def recursive_gif(F: FigureSpace, B, gif_name: str):
 # all monocube recursive gifs:
 def recursive_monocubes():
     for c_id, color in enumerate(list(brick_colors.keys())):
-        if color == 'red': continue 
+        # if color == 'red': continue 
         B = all_bricks[color] 
         F = setup_FigureSpace(1,0)
         recursive_gif(F, B, gif_name = f'monocube_{c_id}.gif')
@@ -170,7 +173,7 @@ def recursive_monocubes():
 # also one large example
 # if False:
 def large_example():
-    for (n,k) in [(2,0)]:
+    for (n,k) in [(4,7)]:
         B = all_bricks['blue'] + all_bricks['yellow'] + all_bricks['purple'] + all_bricks['green']
         F = setup_FigureSpace(n,k)
         gif_name = f'large_{n}_{k}.gif'
@@ -222,9 +225,6 @@ def monocube_solved():
     for c_id, color in enumerate(list(brick_colors.keys())):
         ######################## Figure monocube_{c_id} START ########################
         fig_name = f"monocube_{c_id}"
-        print(f"{color=}")
-        if color=='red': continue
-        # TODO: fix all the red bricks data <30-07-24> #
 
         print(f"Plotting figure: {fig_name}")
         # define new figure
@@ -234,6 +234,7 @@ def monocube_solved():
         F.plot(show=False)
         # save or plot figure
         plot_or_save(plt, fig_name)
+        plt.close()
         ######################### Figure monocube_{c_id} END #########################
 
 
@@ -271,20 +272,17 @@ def main():
 
     b = all_bricks['yellow'][3]
     b.color = 'yellow'
-    if False:
+    if True:
         print_brick(b)
-
-
         recursive_monocubes()
         orientation(b)
         monocube_solved()
         example_figure_space()
-
-
-    if True: # for testing
         main_solutions_as_gifs()
+        # large_example()
 
-    pass
+    else: # for testing
+        monocube_solved()
 
 
 if __name__ == "__main__":

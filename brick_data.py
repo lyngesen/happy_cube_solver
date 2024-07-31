@@ -67,11 +67,18 @@ def get_bricks(colors = 'all'):
              [1,1,0,1,1]])
 
     b5 = Brick(
-            [[0,1,0,0,0],
+            [[0,1,1,0,0],
              [1,1,1,1,1],
              [0,1,1,1,0],
              [1,1,1,1,1],
              [0,0,1,0,1]])
+#     b5 = Brick( # corrections
+            # [[0,1,0,1,1],
+             # [1,1,1,1,0],
+             # [1,1,1,1,0],
+             # [0,1,1,1,1],
+             # [1,1,0,1,1]])
+
 
     b6 = Brick(
             [[0,0,1,0,0],
@@ -345,7 +352,7 @@ ooxox
         if color == 'blue':
             hex_color = '#0000FF'
         elif color == 'red':
-            hex_color = '#FF00FF'
+            hex_color = '#FF0000'
         elif color == 'yellow':
             hex_color = '#EAFF06'
         elif color == 'purple':
