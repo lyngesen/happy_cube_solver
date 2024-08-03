@@ -3,7 +3,7 @@
 polycube_cache/
 .DS_store
 old_files/
-figures/main_solutions/
+#figures/main_solutions/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

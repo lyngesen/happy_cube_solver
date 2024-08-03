@@ -126,12 +126,6 @@ Short explenation of the model:
 
 The model is implemented in the file `pyomo_implementation` and can be solved using the pyomo interface utilizing several different solvers such as `CPLEX` and `CBC`.
 
-### Computational time
-
-The recursive solution methods is clearly dominated by the use of IP solvers.
-
-> TODO:  add results for different solvers <30-07-24>
-
 ## Main function
 
 In the main program in loop throug a set of scenarios in order to find the larges possible polycube which can be formed by a specific set of bricks.
@@ -153,6 +147,19 @@ output: largest_n, largest_F
 
 ```
 
+### Usage
+
+To run the script install all dependencies.
+- `pip install -r requirements.txt`
+
+Command line interface
+
+
+Solve all polycube of sizes $1$ to $12$ (Script fails to generate all polycubes of size $13$).
+- `python main.py`
+
+Solve a specific polycube indexed by $n='size'$ $k='shape'$ and show the solution:
+- `python main.py show`
 
 # The Answer
 
@@ -170,8 +177,10 @@ output: largest_n, largest_F
 |8|225|![](./figures/main_solution_8_225.gif)|
 |9|9|![](./figures/main_solution_9_9.gif)|
 |10|1|![](./figures/main_solution_10_1.gif)|
+|11|0|None of the $2.522.522$ were possible |
+|12|0| None of the $18.598.427$ were possible  |
 
-\* Only some instances solved
+<!--\* Only some instances solved-->
 
 Resources:
 * [Enumeration of polycubes](http://kevingong.com/Polyominoes/Enumeration.html)

@@ -22,6 +22,8 @@ import numpy as np
 import timing
 import itertools
 from collections import Counter
+from simple_term_menu import TerminalMenu
+
 
 
 
@@ -74,6 +76,10 @@ def main():
     all_bricks, brick_colors = get_bricks()
     B = all_bricks['yellow'] + all_bricks['blue'] + all_bricks['orange'] + all_bricks['red'] + all_bricks['purple'] + all_bricks['green']
     # B = all_bricks['yellow'] + all_bricks['blue'] + all_bricks['orange']
+
+
+
+
     workers = 4
 
     print(f"Available bricks: {len(B)}")
@@ -163,24 +169,38 @@ def test():
 
     
 
+def show_single():
+    n = int(input('(polycube size) n: '))
+    K =  len(list(polycubes.generate_polycubes(n)))
+    k = int(input(f'(polycube id of {range(K-1)} possibilities) k: '))
+    
+    all_bricks, brick_colors = get_bricks()
+    terminal_menu = TerminalMenu(
+        brick_colors,
+        default=brick_colors,
+        multi_select=True,
+        show_multi_select_hint=True,
+    )
+    menu_entry_indices = terminal_menu.show()
+    
+    B = []
+    for color in menu_entry_indices:
+        B += all_bricks[list(brick_colors)[color]]
+
+    F = classes.setup_FigureSpace(n,k, max_faces = len(B))
+    F = pyomo_implementation.solve_happy_problem(F,B)
+    F.plot()
+    plt.show()
+
+
 
 if __name__ == '__main__':
     # test()
-    main()
+    # main()
     #F = FigureSpace()
     #cube_solve(F, all_bricks['blue'])
+    if 'show' in sys.argv:
+        show_single()
+    else:
+        main()
 
-    if False:
-        F = setup_FigureSpace(1,0)
-        B = all_bricks['blue'] 
-        B = all_bricks['blue'] + all_bricks['red'] + all_bricks['yellow']
-        B = all_bricks['yellow'] + all_bricks['blue'] + all_bricks['orange'] + all_bricks['red'] + all_bricks['purple'] + all_bricks['green']
-
-        F.plot()
-
-        match input('Solve F?  y/Yes: '):
-            case 'y':
-                solve_happy_problem(F,B)
-            case _:
-                pass
-        
