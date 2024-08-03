@@ -3,6 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from polycubes import generate_cube_coords, get_coords, get_coords_cubegrid
 from copy import deepcopy
+import itertools
 
 DIMS = range(3)
 class Brick:
@@ -388,7 +389,6 @@ class FigureSpace:
     
         def __iter__(self):
             return iter(self.Faces)
-
 
 def setup_FigureSpace(n, k, cube_cords = None, max_faces = None):
 

@@ -248,15 +248,21 @@ def render_shapes(shapes):
 def get_coords(polycube):
     D = polycube.shape
 
-    cubes_coords = []
 
-    for x in range(D[0]):
-        for y in range(D[1]):
-            for z in range(D[2]):
-                if polycube[x,y,z] == 1:
-                    cubes_coords.append((x,y,z))
+    cubes_coords = np.argwhere(polycube == 1)
+    return tuple(map(tuple, cubes_coords))
 
-    return cubes_coords
+#     return cubes_coords
+
+    # cubes_coords = []
+
+    # for x in range(D[0]):
+        # for y in range(D[1]):
+            # for z in range(D[2]):
+                # if polycube[x,y,z] == 1:
+                    # cubes_coords.append((x,y,z))
+
+    # return cubes_coords
 
 
 def get_coords_cubegrid(polycube):

@@ -165,9 +165,13 @@ output: largest_n, largest_F
 |3|2|![](./figures/main_solution_3_2.gif)|
 |4|8|![](./figures/main_solution_4_8.gif)|
 |5|28|![](./figures/main_solution_5_28.gif)|
-|6|150|![](./figures/main_solution_6_150.gif)|
-|7|24|![](./figures/main_solution_7_37.gif)|
-|8|1|![](./figures/main_solution_8_186.png)|
+|6|186|![](./figures/main_solution_6_150.gif)|
+|7|114|![](./figures/main_solution_7_114.gif)|
+|8|225|![](./figures/main_solution_8_225.gif)|
+|9|9|![](./figures/main_solution_9_9.gif)|
+|10|1|![](./figures/main_solution_10_1.gif)|
+
+\* Only some instances solved
 
 Resources:
 * [Enumeration of polycubes](http://kevingong.com/Polyominoes/Enumeration.html)
