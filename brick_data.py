@@ -370,3 +370,71 @@ ooxox
     
     return all_bricks, brick_colors
 
+
+def mirko_bricks():
+    brickset = []
+    b1 = str_to_brick("""
+ooxoo
+oxxxo
+xxxxx
+oxxxo
+xxoxx
+""")
+    b1.color = 'yellow'
+    b2 = str_to_brick("""
+xoxox
+xxxxx
+oxxxo
+xxxxx
+xxoxo
+""")
+    b2.color = 'yellow'
+    b3 = str_to_brick("""
+xoxox
+xxxxx
+oxxxo
+xxxxx
+xxoxo
+""")
+    b3.color = 'green'
+    b4 = str_to_brick("""
+ooxoo
+xxxxx
+oxxxo
+xxxxx
+oxoxo
+""")
+    b4.color = 'orange'
+
+    b5 = str_to_brick("""
+ooxoo
+oxxxo
+xxxxx
+oxxxo
+oxoxx
+""")
+    b5.color = 'purple'
+
+    b6 = str_to_brick("""
+ooxoo
+xxxxo
+oxxxx
+xxxxo
+xxoxx
+""")
+    b6.color = 'blue'
+
+    brickset = (b1,b2,b3,b4,b5,b6)
+
+    # print(f"{brickset=}")
+
+    return brickset
+
+
+
+
+
+if __name__ == '__main__':
+
+    B = mirko_bricks()
+
