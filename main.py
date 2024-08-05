@@ -4,7 +4,7 @@ import classes
 import solver
 import pyomo_implementation 
 
-from brick_data import get_bricks
+from brick_data import get_bricks, mirko_bricks
 from classes import FigureSpace, Edge, setup_FigureSpace, Brick
 from solver import cube_solve
 # from polycubes import generate_cube_coords, get_coords, get_coords_cubegrid
@@ -117,67 +117,16 @@ def main():
                 continue
             print(f"n={n} feasible: {n_feasible=}, with k={k}")
 
-
-def test():
-
-    n = 9
-    max_cube_size = 36
-
-    # efficient ways of counting the number of faces of the n,k polycube.
-    
-    all_cubes = list(polycubes.generate_polycubes(n))
-    cube = all_cubes[0]
-
-    cube_lengths = [count_cube_faces(cube) for cube in all_cubes]
-
-    # create a sorted and filtered list
-    cube_lengths_instances = sorted([cube_length for k, cube_length in enumerate(cube_lengths) if cube_length <= max_cube_size], key= lambda x : cube_lengths[x])
-
-    counts = Counter(cube_lengths)
-    counts_new = Counter(cube_lengths_instances)
-
-    # print(f"{len(all_cubes)=}")
-    # print(f"{cube_lengths=}")
-    print(f"{counts=}")
-    print(f"{counts_new=}")
-
-    # print(f"{cube_cords=}")
-
-    # timing.reset_timeit()
-    # now
-    if False:
-        all_bricks, brick_colors = get_bricks()
-        B = all_bricks['yellow'] + all_bricks['blue'] + all_bricks['orange'] + all_bricks['red'] + all_bricks['purple'] + all_bricks['green']
-        cubes_coords_list = polycubes.generate_cube_coords(n)
-        print(f"{len(cubes_coords_list)=}")
-
-        timing.print_timeit()
-        timing.reset_timeit()
-        
-
-        cube_cords = cubes_coords_list[10]
-
-        print(f"{cube_cords=}")
-
-        F = classes.setup_FigureSpace(0,0, cube_cords, max_faces = len(B))
-        print(f"{len(F.faces)=}")
-        F = pyomo_implementation.solve_happy_problem(F,B)
-
-    timing.print_timeit()
-
-    # new
-
-    
-
 def show_single():
     n = int(input('(polycube size) n: '))
     K =  len(list(polycubes.generate_polycubes(n)))
     k = int(input(f'(polycube id of {range(K-1)} possibilities) k: '))
     
     all_bricks, brick_colors = get_bricks()
+    brick_colors['Mirko'] = mirko_bricks()
+    all_bricks['Mirko'] = mirko_bricks()
     terminal_menu = TerminalMenu(
         brick_colors,
-        default=brick_colors,
         multi_select=True,
         show_multi_select_hint=True,
     )
@@ -189,16 +138,15 @@ def show_single():
 
     F = classes.setup_FigureSpace(n,k, max_faces = len(B))
     F = pyomo_implementation.solve_happy_problem(F,B)
-    F.plot()
-    plt.show()
+    if not F:
+        print(f" Polycube instance infeasible ")
+    else:
+        F.plot()
+        plt.show()
 
 
 
 if __name__ == '__main__':
-    # test()
-    # main()
-    #F = FigureSpace()
-    #cube_solve(F, all_bricks['blue'])
     if 'show' in sys.argv:
         show_single()
     else:
