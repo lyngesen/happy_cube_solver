@@ -180,7 +180,9 @@ Solve a specific polycube indexed by $n='size'$ $k='shape'$ and show the solutio
 |11|0|None of the $2.522.522$ were possible |
 |12|0| None of the $18.598.427$ were possible  |
 
-<!--\* Only some instances solved-->
+\* all images are stored in folder `./figures/main_solutions/` [Link](./figures/main_solutions/).
+
+It looks like the largest possible shape is of size $10$, but the above search is not exhaustive.
 
 Resources:
 * [Enumeration of polycubes](http://kevingong.com/Polyominoes/Enumeration.html)
