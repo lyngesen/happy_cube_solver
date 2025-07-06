@@ -67,8 +67,6 @@ A simple backtracking is implemented which easily solves the problem when consid
 | ![n=1, k=0](figures/monocube_0.gif)|![alt](figures/monocube_1.gif) |![alt](figures/monocube_2.gif) |  ![alt](figures/monocube_3.gif)| ![alt](figures/monocube_4.gif) | ![alt](figures/monocube_5.gif)|
 
 
-> TODO: The red one is missing as the data is wrong <30-07-24> >
-
 A visualization of the recursive solver on a larger (intractable) instance:
 
 
